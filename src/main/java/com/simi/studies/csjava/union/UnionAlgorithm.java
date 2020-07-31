@@ -4,7 +4,7 @@ public interface UnionAlgorithm<T> {
 
   Iterable<T> getSet();
 
-  void connect(final T firstNodeId, final T secondNodeId);
+  void connect(final T firstNode, final T secondNode);
 
   boolean isConnected(final T firstNode, final T secondNode);
 
