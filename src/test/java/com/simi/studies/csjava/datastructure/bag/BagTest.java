@@ -2,6 +2,7 @@ package com.simi.studies.csjava.datastructure.bag;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 class BagTest {
 
@@ -24,6 +25,17 @@ class BagTest {
     bag.add("Test1");
     bag.add("Test2");
     Assertions.assertEquals(2, bag.size());
+  }
+
+  @Test
+  public void givenBagWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+    final var firstItem = "Test1";
+    final var lastItem = "Test2";
+    final var bag = new Bag<String>();
+    bag.add(firstItem);
+    bag.add(lastItem);
+    final var list = List.of(lastItem, firstItem);
+    Assertions.assertIterableEquals(list, bag);
   }
 
 }
