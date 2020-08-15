@@ -13,7 +13,10 @@ public class Bag<T> implements Iterable<T> {
     private Node<T> nextElement;
   }
 
-  public void add(T t) {
+  public void add(final T t) {
+    if (t == null) {
+      throw new IllegalArgumentException("A bag element can not be null");
+    }
     final var old = last;
     last = new Node();
     last.element = t;
@@ -37,7 +40,7 @@ public class Bag<T> implements Iterable<T> {
   private class BagIterator implements Iterator<T> {
     private Node<T> current;
 
-    public BagIterator(Node<T> first) {
+    public BagIterator(final Node<T> first) {
       current = first;
     }
 
