@@ -11,4 +11,11 @@ class BagTest {
     Assertions.assertTrue(emptyBag.isEmpty());
   }
 
+  @Test
+  public void givenBagWithOneElement_whenCheckEmptiness_thenShouldBeFalse() {
+    final var bag = new Bag();
+    bag.add("Test");
+    Assertions.assertFalse(bag.isEmpty());
+  }
+
 }
