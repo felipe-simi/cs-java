@@ -8,11 +8,6 @@ public class Bag<T> implements Iterable<T> {
   private Node<T> last;
   private int totalElements;
 
-  private static class Node<T> {
-    private T element;
-    private Node<T> nextElement;
-  }
-
   public void add(final T t) {
     if (t == null) {
       throw new IllegalArgumentException("A bag element can not be null");
@@ -35,6 +30,11 @@ public class Bag<T> implements Iterable<T> {
   @Override
   public Iterator<T> iterator() {
     return new BagIterator(last);
+  }
+
+  private static final class Node<T> {
+    private T element;
+    private Node<T> nextElement;
   }
 
   private class BagIterator implements Iterator<T> {
