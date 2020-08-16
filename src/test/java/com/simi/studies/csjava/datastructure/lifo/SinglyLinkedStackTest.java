@@ -11,4 +11,12 @@ class SinglyLinkedStackTest {
     Assertions.assertTrue(emptyStack.isEmpty());
   }
 
+  @Test
+  public void givenStackWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+    final var singlyStack = new SinglyLinkedStack<String>();
+    singlyStack.push("Test");
+    Assertions.assertFalse(singlyStack.isEmpty());
+  }
+
+
 }

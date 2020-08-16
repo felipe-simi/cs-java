@@ -5,8 +5,16 @@ import java.util.Optional;
 
 public class SinglyLinkedStack<T> implements Stack<T> {
 
+  private Node<T> topItem;
+
   @Override
   public void push(final T item) {
+    if (topItem == null) {
+      topItem = new Node(item, null);
+      return;
+    }
+    final var lastItem = new Node(item, topItem);
+    topItem = lastItem;
   }
 
   @Override
@@ -16,7 +24,7 @@ public class SinglyLinkedStack<T> implements Stack<T> {
 
   @Override
   public boolean isEmpty() {
-    return true;
+    return topItem == null;
   }
 
   @Override
