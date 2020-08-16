@@ -22,7 +22,12 @@ public class SinglyLinkedStack<T> implements Stack<T> {
 
   @Override
   public Optional<T> pop() {
-    return null;
+    if (isEmpty()) {
+      return Optional.empty();
+    }
+    final var item = topItem.item;
+    topItem = topItem.nextItem;
+    return Optional.of(item);
   }
 
   @Override

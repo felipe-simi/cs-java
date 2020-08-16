@@ -26,4 +26,26 @@ class SinglyLinkedStackTest {
     Assertions.assertEquals(2, singlyStack.size());
   }
 
+  @Test
+  public void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
+    final var singlyStack = new SinglyLinkedStack<String>();
+    Assertions.assertTrue(singlyStack.pop().isEmpty());
+  }
+
+  @Test
+  public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
+    final var singlyStack = new SinglyLinkedStack<String>();
+    singlyStack.push("Test1");
+    Assertions.assertEquals("Test1", singlyStack.pop().get());
+  }
+
+  @Test
+  public void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
+    final var singlyStack = new SinglyLinkedStack<String>();
+    singlyStack.push("Test1");
+    singlyStack.push("Test2");
+    Assertions.assertEquals("Test2", singlyStack.pop().get());
+    Assertions.assertEquals("Test1", singlyStack.pop().get());
+  }
+
 }
