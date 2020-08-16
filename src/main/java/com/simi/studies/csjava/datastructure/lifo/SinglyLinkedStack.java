@@ -1,6 +1,7 @@
 package com.simi.studies.csjava.datastructure.lifo;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class SinglyLinkedStack<T> implements Stack<T> {
@@ -42,7 +43,7 @@ public class SinglyLinkedStack<T> implements Stack<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return null;
+    return new SinglyLinkedStackIterator(topItem);
   }
 
   private static final class Node<T> {
@@ -53,6 +54,36 @@ public class SinglyLinkedStack<T> implements Stack<T> {
     private Node(final T item, final Node<T> nextItem) {
       this.item = item;
       this.nextItem = nextItem;
+    }
+
+  }
+
+  private class SinglyLinkedStackIterator<T> implements Iterator<T> {
+
+    private Node<T> currentItem;
+
+    public SinglyLinkedStackIterator(Node<T> firstItem) {
+      currentItem = firstItem;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return currentItem != null;
+    }
+
+    @Override
+    public T next() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
+      }
+      T item = currentItem.item;
+      currentItem = currentItem.nextItem;
+      return item;
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException("Can not remove from a Stack");
     }
 
   }

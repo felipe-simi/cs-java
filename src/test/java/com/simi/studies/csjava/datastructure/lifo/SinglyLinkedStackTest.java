@@ -2,6 +2,8 @@ package com.simi.studies.csjava.datastructure.lifo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 class SinglyLinkedStackTest {
 
@@ -46,6 +48,31 @@ class SinglyLinkedStackTest {
     singlyStack.push("Test2");
     Assertions.assertEquals("Test2", singlyStack.pop().get());
     Assertions.assertEquals("Test1", singlyStack.pop().get());
+  }
+
+  @Test
+  public void givenStackWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+    final var firstItem = "Test1";
+    final var lastItem = "Test2";
+    final var singlyStack = new SinglyLinkedStack<String>();
+    singlyStack.push(firstItem);
+    singlyStack.push(lastItem);
+    final var list = List.of(lastItem, firstItem);
+    Assertions.assertIterableEquals(list, singlyStack);
+  }
+
+  @Test
+  void givenStackWithoutElements_whenIterating_thenShouldFail() {
+    Stack<String> linkedStack = new SinglyLinkedStack<>();
+    final var iterator = linkedStack.iterator();
+    Assertions.assertThrows(NoSuchElementException.class, () -> iterator.next());
+  }
+
+  @Test
+  void givenStackIterator_whenRemoving_thenShouldFail() {
+    Stack<String> linkedStack = new SinglyLinkedStack<>();
+    final var iterator = linkedStack.iterator();
+    Assertions.assertThrows(UnsupportedOperationException.class, () -> iterator.remove());
   }
 
 }
