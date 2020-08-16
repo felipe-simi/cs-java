@@ -18,5 +18,12 @@ class SinglyLinkedStackTest {
     Assertions.assertFalse(singlyStack.isEmpty());
   }
 
+  @Test
+  public void givenStackWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+    final var singlyStack = new SinglyLinkedStack<String>();
+    singlyStack.push("Test1");
+    singlyStack.push("Test2");
+    Assertions.assertEquals(2, singlyStack.size());
+  }
 
 }

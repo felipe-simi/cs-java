@@ -6,15 +6,18 @@ import java.util.Optional;
 public class SinglyLinkedStack<T> implements Stack<T> {
 
   private Node<T> topItem;
+  private int totalElements;
 
   @Override
   public void push(final T item) {
     if (topItem == null) {
       topItem = new Node(item, null);
+      totalElements++;
       return;
     }
     final var lastItem = new Node(item, topItem);
     topItem = lastItem;
+    totalElements++;
   }
 
   @Override
@@ -29,7 +32,7 @@ public class SinglyLinkedStack<T> implements Stack<T> {
 
   @Override
   public int size() {
-    return 0;
+    return totalElements;
   }
 
   @Override
