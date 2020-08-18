@@ -35,4 +35,26 @@ class FixedCapacityStackTest {
     Assertions.assertThrows(CapacityExceededException.class, () -> fixedCapacity.push("Test3"));
   }
 
+  @Test
+  public void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
+    final var fixedCapacity = new FixedCapacityStack<String>(0);
+    Assertions.assertTrue(fixedCapacity.pop().isEmpty());
+  }
+
+  @Test
+  public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
+    final var fixedCapacity = new FixedCapacityStack<String>(1);
+    fixedCapacity.push("Test1");
+    Assertions.assertEquals("Test1", fixedCapacity.pop().get());
+  }
+
+  @Test
+  public void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
+    final var fixedCapacity = new FixedCapacityStack<String>(2);
+    fixedCapacity.push("Test1");
+    fixedCapacity.push("Test2");
+    Assertions.assertEquals("Test2", fixedCapacity.pop().get());
+    Assertions.assertEquals("Test1", fixedCapacity.pop().get());
+  }
+
 }

@@ -24,7 +24,12 @@ public class FixedCapacityStack<T> implements Stack<T> {
 
   @Override
   public Optional<T> pop() {
-    return Optional.empty();
+    if (isEmpty()) {
+      return Optional.empty();
+    }
+    totalElements--;
+    final var poppedElement = elements[totalElements];
+    return Optional.of(poppedElement);
   }
 
   @Override
