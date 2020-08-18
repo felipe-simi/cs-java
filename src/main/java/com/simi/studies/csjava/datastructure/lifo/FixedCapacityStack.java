@@ -5,9 +5,17 @@ import java.util.Optional;
 
 public class FixedCapacityStack<T> implements Stack<T> {
 
+  private T[] elements;
+  private int totalElements;
+
+  public FixedCapacityStack(int maxCapacity) {
+    elements = (T[]) new Object[maxCapacity];
+  }
+
   @Override
   public void push(T item) {
-
+    elements[totalElements] = item;
+    totalElements++;
   }
 
   @Override
@@ -17,7 +25,7 @@ public class FixedCapacityStack<T> implements Stack<T> {
 
   @Override
   public boolean isEmpty() {
-    return true;
+    return totalElements == 0;
   }
 
   @Override
