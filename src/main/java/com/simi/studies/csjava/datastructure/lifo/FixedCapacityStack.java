@@ -1,5 +1,6 @@
 package com.simi.studies.csjava.datastructure.lifo;
 
+import com.simi.studies.csjava.datastructure.CapacityExceededException;
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -14,6 +15,9 @@ public class FixedCapacityStack<T> implements Stack<T> {
 
   @Override
   public void push(T item) {
+    if (totalElements == elements.length) {
+      throw new CapacityExceededException("It is not allowed to push into a full stack.");
+    }
     elements[totalElements] = item;
     totalElements++;
   }
@@ -30,7 +34,7 @@ public class FixedCapacityStack<T> implements Stack<T> {
 
   @Override
   public int size() {
-    return 0;
+    return totalElements;
   }
 
   @Override
