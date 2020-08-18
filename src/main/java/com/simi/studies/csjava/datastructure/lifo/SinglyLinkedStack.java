@@ -62,7 +62,7 @@ public class SinglyLinkedStack<T> implements Stack<T> {
 
     private Node<T> currentItem;
 
-    public SinglyLinkedStackIterator(Node<T> firstItem) {
+    public SinglyLinkedStackIterator(final Node<T> firstItem) {
       currentItem = firstItem;
     }
 
@@ -76,7 +76,7 @@ public class SinglyLinkedStack<T> implements Stack<T> {
       if (!hasNext()) {
         throw new NoSuchElementException();
       }
-      T item = currentItem.item;
+      final var item = currentItem.item;
       currentItem = currentItem.nextItem;
       return item;
     }

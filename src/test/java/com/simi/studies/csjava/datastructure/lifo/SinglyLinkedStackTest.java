@@ -63,14 +63,14 @@ class SinglyLinkedStackTest {
 
   @Test
   void givenStackWithoutElements_whenIterating_thenShouldFail() {
-    Stack<String> linkedStack = new SinglyLinkedStack<>();
+    final var linkedStack = new SinglyLinkedStack<>();
     final var iterator = linkedStack.iterator();
     Assertions.assertThrows(NoSuchElementException.class, () -> iterator.next());
   }
 
   @Test
   void givenStackIterator_whenRemoving_thenShouldFail() {
-    Stack<String> linkedStack = new SinglyLinkedStack<>();
+    final var linkedStack = new SinglyLinkedStack<>();
     final var iterator = linkedStack.iterator();
     Assertions.assertThrows(UnsupportedOperationException.class, () -> iterator.remove());
   }
