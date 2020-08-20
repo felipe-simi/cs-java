@@ -26,10 +26,18 @@ public class DynamicCapacityStack<T> implements Stack<T> {
   }
 
   private void increaseCapacity() {
+    final var temp = (T[]) new Object[elements.length * 2];
+    for (int i = 0; i < totalElements; i++) {
+      temp[i] = elements[i];
+    }
+    elements = temp;
   }
 
   @Override
   public void push(T item) {
+    if (elements.length * loadFactor > totalElements) {
+      increaseCapacity();
+    }
     elements[totalElements] = item;
     totalElements++;
   }
@@ -46,7 +54,7 @@ public class DynamicCapacityStack<T> implements Stack<T> {
 
   @Override
   public int size() {
-    return 0;
+    return totalElements;
   }
 
   @Override

@@ -13,9 +13,17 @@ class DynamicCapacityStackTest {
 
   @Test
   public void givenStackWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
-    final var fixedCapacity = new DynamicCapacityStack<String>(1);
-    fixedCapacity.push("Test");
-    Assertions.assertFalse(fixedCapacity.isEmpty());
+    final var dynamicCapacity = new DynamicCapacityStack<String>(1);
+    dynamicCapacity.push("Test");
+    Assertions.assertFalse(dynamicCapacity.isEmpty());
+  }
+
+  @Test
+  public void givenStackWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+    final var dynamicCapacity = new DynamicCapacityStack<String>(1);
+    dynamicCapacity.push("Test1");
+    dynamicCapacity.push("Test2");
+    Assertions.assertEquals(2, dynamicCapacity.size());
   }
 
 }
