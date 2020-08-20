@@ -18,6 +18,12 @@ public class DynamicCapacityStack<T> implements Stack<T> {
   }
 
   public DynamicCapacityStack(final int initialCapacity, final float loadFactor) {
+    if (initialCapacity < 1) {
+      throw new IllegalArgumentException("Initial capacity must be greater than zero!");
+    }
+    if (loadFactor <= 0 || loadFactor >= 1) {
+      throw new IllegalArgumentException("Load factor must be between zero and one!");
+    }
     this.loadFactor = loadFactor;
     this.elements = (T[]) new Object[initialCapacity];
   }

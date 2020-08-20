@@ -11,6 +11,9 @@ public class FixedCapacityStack<T> implements Stack<T> {
   private int totalElements;
 
   public FixedCapacityStack(int maxCapacity) {
+    if (maxCapacity < 1) {
+      throw new IllegalArgumentException("Maximum capacity must be greater than zero!");
+    }
     elements = (T[]) new Object[maxCapacity];
   }
 

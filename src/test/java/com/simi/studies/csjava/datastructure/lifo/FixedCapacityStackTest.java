@@ -9,8 +9,14 @@ import java.util.NoSuchElementException;
 class FixedCapacityStackTest {
 
   @Test
+  public void givenInvalidCapacity_whenCreatingStack_thenThrowException() {
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> new FixedCapacityStack<String>(0));
+  }
+
+  @Test
   public void givenStackWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
-    final var emptyStack = new FixedCapacityStack<String>(0);
+    final var emptyStack = new FixedCapacityStack<String>(10);
     Assertions.assertTrue(emptyStack.isEmpty());
   }
 
@@ -39,7 +45,7 @@ class FixedCapacityStackTest {
 
   @Test
   public void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
-    final var fixedCapacity = new FixedCapacityStack<String>(0);
+    final var fixedCapacity = new FixedCapacityStack<String>(2);
     Assertions.assertTrue(fixedCapacity.pop().isEmpty());
   }
 
@@ -72,14 +78,14 @@ class FixedCapacityStackTest {
 
   @Test
   void givenStackWithoutElements_whenIterating_thenShouldFail() {
-    final var fixedCapacity = new FixedCapacityStack<>(0);
+    final var fixedCapacity = new FixedCapacityStack<>(5);
     final var iterator = fixedCapacity.iterator();
     Assertions.assertThrows(NoSuchElementException.class, () -> iterator.next());
   }
 
   @Test
   void givenStackIterator_whenRemoving_thenShouldFail() {
-    final var linkedStack = new FixedCapacityStack<>(0);
+    final var linkedStack = new FixedCapacityStack<>(5);
     final var iterator = linkedStack.iterator();
     Assertions.assertThrows(UnsupportedOperationException.class, () -> iterator.remove());
   }
