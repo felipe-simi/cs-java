@@ -19,11 +19,36 @@ class DynamicCapacityStackTest {
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+  public void givenStackWithMultipleElements_whenCheckingSize_thenResize() {
     final var dynamicCapacity = new DynamicCapacityStack<String>(1);
     dynamicCapacity.push("Test1");
     dynamicCapacity.push("Test2");
     Assertions.assertEquals(2, dynamicCapacity.size());
   }
+
+  @Test
+  public void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
+    final var dynamicCapacity = new DynamicCapacityStack<String>(0);
+    Assertions.assertTrue(dynamicCapacity.pop().isEmpty());
+  }
+
+
+  @Test
+  public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
+    final var dynamicCapacity = new DynamicCapacityStack<String>(1);
+    dynamicCapacity.push("Test1");
+    Assertions.assertEquals("Test1", dynamicCapacity.pop().get());
+  }
+
+  @Test
+  public void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
+    final var dynamicCapacity = new DynamicCapacityStack<String>(2);
+    dynamicCapacity.push("Test1");
+    dynamicCapacity.push("Test2");
+    Assertions.assertEquals("Test2", dynamicCapacity.pop().get());
+    Assertions.assertEquals("Test1", dynamicCapacity.pop().get());
+    Assertions.assertTrue(dynamicCapacity.isEmpty());
+  }
+
 
 }

@@ -22,11 +22,9 @@ public class DynamicCapacityStack<T> implements Stack<T> {
     this.elements = (T[]) new Object[initialCapacity];
   }
 
-  private void decreaseCapacity() {
-  }
-
-  private void increaseCapacity() {
-    final var temp = (T[]) new Object[elements.length * 2];
+  private void resizeArray(final float resizingFactor) {
+    final var newSize = Math.round(elements.length * resizingFactor);
+    final var temp = (T[]) new Object[newSize];
     for (int i = 0; i < totalElements; i++) {
       temp[i] = elements[i];
     }
@@ -34,17 +32,34 @@ public class DynamicCapacityStack<T> implements Stack<T> {
   }
 
   @Override
-  public void push(T item) {
-    if (elements.length * loadFactor > totalElements) {
-      increaseCapacity();
-    }
+  public void push(final T item) {
+    increaseCapacity();
     elements[totalElements] = item;
     totalElements++;
   }
 
+  private void increaseCapacity() {
+    if (elements.length * loadFactor > totalElements) {
+      resizeArray(2f);
+    }
+  }
+
   @Override
   public Optional<T> pop() {
-    return Optional.empty();
+    if (isEmpty()) {
+      return Optional.empty();
+    }
+    totalElements--;
+    final var poppedElement = elements[totalElements];
+    elements[totalElements] = null;
+    decreaseCapacity();
+    return Optional.of(poppedElement);
+  }
+
+  private void decreaseCapacity() {
+    if (elements.length * (1 - loadFactor) > totalElements) {
+      resizeArray(0.5f);
+    }
   }
 
   @Override
