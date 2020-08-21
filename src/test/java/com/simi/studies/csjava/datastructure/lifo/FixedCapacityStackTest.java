@@ -85,8 +85,8 @@ class FixedCapacityStackTest {
 
   @Test
   void givenStackIterator_whenRemoving_thenShouldFail() {
-    final var linkedStack = new FixedCapacityStack<>(5);
-    final var iterator = linkedStack.iterator();
+    final var fixedCapacity = new FixedCapacityStack<>(5);
+    final var iterator = fixedCapacity.iterator();
     Assertions.assertThrows(UnsupportedOperationException.class, () -> iterator.remove());
   }
 

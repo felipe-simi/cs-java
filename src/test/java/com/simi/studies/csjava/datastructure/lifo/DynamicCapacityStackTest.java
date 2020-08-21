@@ -2,6 +2,8 @@ package com.simi.studies.csjava.datastructure.lifo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 class DynamicCapacityStackTest {
 
@@ -71,6 +73,31 @@ class DynamicCapacityStackTest {
     Assertions.assertEquals("Test2", dynamicCapacity.pop().get());
     Assertions.assertEquals("Test1", dynamicCapacity.pop().get());
     Assertions.assertTrue(dynamicCapacity.isEmpty());
+  }
+
+  @Test
+  public void givenStackWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+    final var firstItem = "Test1";
+    final var lastItem = "Test2";
+    final var dynamicCapacity = new DynamicCapacityStack<String>(2);
+    dynamicCapacity.push(firstItem);
+    dynamicCapacity.push(lastItem);
+    final var list = List.of(lastItem, firstItem);
+    Assertions.assertIterableEquals(list, dynamicCapacity);
+  }
+
+  @Test
+  void givenStackWithoutElements_whenIterating_thenShouldFail() {
+    final var dynamicCapacity = new DynamicCapacityStack<>(5);
+    final var iterator = dynamicCapacity.iterator();
+    Assertions.assertThrows(NoSuchElementException.class, () -> iterator.next());
+  }
+
+  @Test
+  void givenStackIterator_whenRemoving_thenShouldFail() {
+    final var dynamicCapacity = new DynamicCapacityStack<>(5);
+    final var iterator = dynamicCapacity.iterator();
+    Assertions.assertThrows(UnsupportedOperationException.class, () -> iterator.remove());
   }
 
 }
