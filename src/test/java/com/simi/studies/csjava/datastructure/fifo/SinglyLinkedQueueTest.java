@@ -18,4 +18,13 @@ class SinglyLinkedQueueTest {
     Assertions.assertFalse(singlyQueue.isEmpty());
   }
 
+  @Test
+  public void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+    final var singlyQueue = new SinglyLinkedQueue<String>();
+    singlyQueue.enqueue("Test1");
+    Assertions.assertEquals(1, singlyQueue.size());
+    singlyQueue.enqueue("Test2");
+    Assertions.assertEquals(2, singlyQueue.size());
+  }
+
 }

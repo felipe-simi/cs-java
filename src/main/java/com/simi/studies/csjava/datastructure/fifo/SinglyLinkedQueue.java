@@ -7,18 +7,20 @@ public class SinglyLinkedQueue<T> implements Queue<T> {
 
   private Node<T> firstItem;
   private Node<T> lastItem;
+  private int totalElements;
 
   @Override
   public void enqueue(final T item) {
     if (firstItem == null) {
       firstItem = new Node(item);
       lastItem = firstItem;
+      totalElements++;
       return;
     }
     final var newNode = new Node(item);
     lastItem.nextItem = newNode;
     lastItem = newNode;
-
+    totalElements++;
   }
 
   @Override
@@ -33,7 +35,7 @@ public class SinglyLinkedQueue<T> implements Queue<T> {
 
   @Override
   public int size() {
-    return 0;
+    return totalElements;
   }
 
   @Override
