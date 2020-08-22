@@ -11,4 +11,11 @@ class SinglyLinkedQueueTest {
     Assertions.assertTrue(emptyQueue.isEmpty());
   }
 
+  @Test
+  public void givenQueueWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+    final var singlyQueue = new SinglyLinkedQueue<String>();
+    singlyQueue.enqueue("Test");
+    Assertions.assertFalse(singlyQueue.isEmpty());
+  }
+
 }
