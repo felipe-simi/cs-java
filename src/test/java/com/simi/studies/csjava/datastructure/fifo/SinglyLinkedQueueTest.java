@@ -27,4 +27,29 @@ class SinglyLinkedQueueTest {
     Assertions.assertEquals(2, singlyQueue.size());
   }
 
+  @Test
+  public void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
+    final var singlyQueue = new SinglyLinkedQueue<String>();
+    Assertions.assertTrue(singlyQueue.dequeue().isEmpty());
+  }
+
+  @Test
+  public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
+    final var singlyQueue = new SinglyLinkedQueue<String>();
+    singlyQueue.enqueue("Test1");
+    Assertions.assertEquals("Test1", singlyQueue.dequeue().get());
+    Assertions.assertEquals(0, singlyQueue.size());
+  }
+
+  @Test
+  public void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
+    final var singlyQueue = new SinglyLinkedQueue<String>();
+    singlyQueue.enqueue("Test1");
+    singlyQueue.enqueue("Test2");
+    Assertions.assertEquals("Test1", singlyQueue.dequeue().get());
+    Assertions.assertEquals(1, singlyQueue.size());
+    Assertions.assertEquals("Test2", singlyQueue.dequeue().get());
+    Assertions.assertEquals(0, singlyQueue.size());
+  }
+
 }

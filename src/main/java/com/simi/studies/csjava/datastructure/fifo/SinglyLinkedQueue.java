@@ -25,7 +25,13 @@ public class SinglyLinkedQueue<T> implements Queue<T> {
 
   @Override
   public Optional<T> dequeue() {
-    return Optional.empty();
+    if (isEmpty()) {
+      return Optional.empty();
+    }
+    totalElements--;
+    final var item = firstItem.item;
+    firstItem = firstItem.nextItem;
+    return Optional.of(item);
   }
 
   @Override
