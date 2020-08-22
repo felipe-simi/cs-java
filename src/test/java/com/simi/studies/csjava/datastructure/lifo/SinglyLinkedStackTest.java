@@ -24,6 +24,7 @@ class SinglyLinkedStackTest {
   public void givenStackWithMultipleElements_whenCheckingSize_thenShouldTwo() {
     final var singlyStack = new SinglyLinkedStack<String>();
     singlyStack.push("Test1");
+    Assertions.assertEquals(1, singlyStack.size());
     singlyStack.push("Test2");
     Assertions.assertEquals(2, singlyStack.size());
   }
@@ -39,6 +40,7 @@ class SinglyLinkedStackTest {
     final var singlyStack = new SinglyLinkedStack<String>();
     singlyStack.push("Test1");
     Assertions.assertEquals("Test1", singlyStack.pop().get());
+    Assertions.assertEquals(0, singlyStack.size());
   }
 
   @Test
@@ -47,7 +49,9 @@ class SinglyLinkedStackTest {
     singlyStack.push("Test1");
     singlyStack.push("Test2");
     Assertions.assertEquals("Test2", singlyStack.pop().get());
+    Assertions.assertEquals(1, singlyStack.size());
     Assertions.assertEquals("Test1", singlyStack.pop().get());
+    Assertions.assertEquals(0, singlyStack.size());
   }
 
   @Test

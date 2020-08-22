@@ -26,6 +26,7 @@ public class SinglyLinkedStack<T> implements Stack<T> {
     if (isEmpty()) {
       return Optional.empty();
     }
+    totalElements--;
     final var item = topItem.item;
     topItem = topItem.nextItem;
     return Optional.of(item);
@@ -62,7 +63,7 @@ public class SinglyLinkedStack<T> implements Stack<T> {
 
     private Node<T> currentItem;
 
-    public SinglyLinkedStackIterator(final Node<T> firstItem) {
+    private SinglyLinkedStackIterator(final Node<T> firstItem) {
       currentItem = firstItem;
     }
 
