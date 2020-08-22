@@ -1,6 +1,7 @@
 package com.simi.studies.csjava.datastructure.fifo;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class SinglyLinkedQueue<T> implements Queue<T> {
@@ -46,7 +47,7 @@ public class SinglyLinkedQueue<T> implements Queue<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return null;
+    return new SinglyLinkedQueueIterator(firstItem);
   }
 
   private static final class Node<T> {
@@ -56,6 +57,37 @@ public class SinglyLinkedQueue<T> implements Queue<T> {
 
     private Node(final T item) {
       this.item = item;
+    }
+
+  }
+
+
+  private class SinglyLinkedQueueIterator<T> implements Iterator<T> {
+
+    private Node<T> currentItem;
+
+    private SinglyLinkedQueueIterator(final Node<T> firstItem) {
+      currentItem = firstItem;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return currentItem != null;
+    }
+
+    @Override
+    public T next() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
+      }
+      final var item = currentItem.item;
+      currentItem = currentItem.nextItem;
+      return item;
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException("Can not remove from a Queue");
     }
 
   }

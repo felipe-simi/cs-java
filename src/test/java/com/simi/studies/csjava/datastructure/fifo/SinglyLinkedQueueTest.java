@@ -2,6 +2,8 @@ package com.simi.studies.csjava.datastructure.fifo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 class SinglyLinkedQueueTest {
 
@@ -50,6 +52,31 @@ class SinglyLinkedQueueTest {
     Assertions.assertEquals(1, singlyQueue.size());
     Assertions.assertEquals("Test2", singlyQueue.dequeue().get());
     Assertions.assertEquals(0, singlyQueue.size());
+  }
+
+  @Test
+  public void givenQueueWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+    final var firstItem = "Test1";
+    final var lastItem = "Test2";
+    final var singlyQueue = new SinglyLinkedQueue<String>();
+    singlyQueue.enqueue(firstItem);
+    singlyQueue.enqueue(lastItem);
+    final var list = List.of(firstItem, lastItem);
+    Assertions.assertIterableEquals(list, singlyQueue);
+  }
+
+  @Test
+  void givenQueueWithoutElements_whenIterating_thenShouldFail() {
+    final var linkedQueue = new SinglyLinkedQueue<>();
+    final var iterator = linkedQueue.iterator();
+    Assertions.assertThrows(NoSuchElementException.class, () -> iterator.next());
+  }
+
+  @Test
+  void givenQueueIterator_whenRemoving_thenShouldFail() {
+    final var linkedQueue = new SinglyLinkedQueue<>();
+    final var iterator = linkedQueue.iterator();
+    Assertions.assertThrows(UnsupportedOperationException.class, () -> iterator.remove());
   }
 
 }
