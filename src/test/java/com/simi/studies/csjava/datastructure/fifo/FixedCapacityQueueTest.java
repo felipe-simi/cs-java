@@ -23,6 +23,7 @@ class FixedCapacityQueueTest {
   public void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
     final var fixedCapacity = new FixedCapacityQueue<String>(2);
     fixedCapacity.enqueue("Test1");
+    Assertions.assertEquals(1, fixedCapacity.size());
     fixedCapacity.enqueue("Test2");
     Assertions.assertEquals(2, fixedCapacity.size());
   }
@@ -33,6 +34,39 @@ class FixedCapacityQueueTest {
     fixedCapacity.enqueue("Test1");
     fixedCapacity.enqueue("Test2");
     Assertions.assertThrows(CapacityExceededException.class, () -> fixedCapacity.enqueue("Test3"));
+  }
+
+  @Test
+  public void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
+    final var fixedCapacity = new FixedCapacityQueue<String>(2);
+    Assertions.assertTrue(fixedCapacity.dequeue().isEmpty());
+  }
+
+  @Test
+  public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
+    final var fixedCapacity = new FixedCapacityQueue<String>(1);
+    fixedCapacity.enqueue("Test1");
+    Assertions.assertEquals("Test1", fixedCapacity.dequeue().get());
+  }
+
+  @Test
+  public void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
+    final var fixedCapacity = new FixedCapacityQueue<String>(2);
+    fixedCapacity.enqueue("Test1");
+    fixedCapacity.enqueue("Test2");
+    Assertions.assertEquals("Test1", fixedCapacity.dequeue().get());
+    Assertions.assertEquals("Test2", fixedCapacity.dequeue().get());
+  }
+
+  @Test
+  public void givenQueueWithMultipleElements_whenDequeueElementsInterchangeably_thenShouldBeLifo() {
+    final var fixedCapacity = new FixedCapacityQueue<String>(2);
+    fixedCapacity.enqueue("Test1");
+    Assertions.assertEquals("Test1", fixedCapacity.dequeue().get());
+    Assertions.assertEquals(0, fixedCapacity.size());
+    fixedCapacity.enqueue("Test2");
+    Assertions.assertEquals("Test2", fixedCapacity.dequeue().get());
+    Assertions.assertEquals(0, fixedCapacity.size());
   }
 
 }

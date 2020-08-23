@@ -27,7 +27,17 @@ public class FixedCapacityQueue<T> implements Queue<T> {
 
   @Override
   public Optional<T> dequeue() {
-    return Optional.empty();
+    if (isEmpty()) {
+      return Optional.empty();
+    }
+    final var item = elements[0];
+    final var temp = (T[]) new Object[elements.length];
+    for (int i = 1; i < totalElements; i++) {
+      temp[i - 1] = elements[i];
+    }
+    totalElements--;
+    elements = temp;
+    return Optional.of(item);
   }
 
   @Override
