@@ -3,6 +3,8 @@ package com.simi.studies.csjava.datastructure.fifo;
 import com.simi.studies.csjava.datastructure.CapacityExceededException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 class FixedCapacityQueueTest {
 
@@ -67,6 +69,31 @@ class FixedCapacityQueueTest {
     fixedCapacity.enqueue("Test2");
     Assertions.assertEquals("Test2", fixedCapacity.dequeue().get());
     Assertions.assertEquals(0, fixedCapacity.size());
+  }
+
+  @Test
+  public void givenQueueWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+    final var firstItem = "Test1";
+    final var lastItem = "Test2";
+    final var fixedCapacity = new FixedCapacityQueue<String>(2);
+    fixedCapacity.enqueue(firstItem);
+    fixedCapacity.enqueue(lastItem);
+    final var list = List.of(firstItem, lastItem);
+    Assertions.assertIterableEquals(list, fixedCapacity);
+  }
+
+  @Test
+  void givenQueueWithoutElements_whenIterating_thenShouldFail() {
+    final var fixedCapacity = new FixedCapacityQueue<>(2);
+    final var iterator = fixedCapacity.iterator();
+    Assertions.assertThrows(NoSuchElementException.class, () -> iterator.next());
+  }
+
+  @Test
+  void givenQueueIterator_whenRemoving_thenShouldFail() {
+    final var fixedCapacity = new FixedCapacityQueue<>(2);
+    final var iterator = fixedCapacity.iterator();
+    Assertions.assertThrows(UnsupportedOperationException.class, () -> iterator.remove());
   }
 
 }
