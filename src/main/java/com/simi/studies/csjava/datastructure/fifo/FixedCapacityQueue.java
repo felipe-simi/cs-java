@@ -1,5 +1,6 @@
 package com.simi.studies.csjava.datastructure.fifo;
 
+import com.simi.studies.csjava.datastructure.CapacityExceededException;
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -17,6 +18,9 @@ public class FixedCapacityQueue<T> implements Queue<T> {
 
   @Override
   public void enqueue(T item) {
+    if (totalElements == elements.length) {
+      throw new CapacityExceededException("It is not allowed to enqueue into a full queue.");
+    }
     elements[totalElements] = item;
     totalElements++;
   }
@@ -33,7 +37,7 @@ public class FixedCapacityQueue<T> implements Queue<T> {
 
   @Override
   public int size() {
-    return 0;
+    return totalElements;
   }
 
   @Override
