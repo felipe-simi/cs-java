@@ -67,15 +67,15 @@ class SinglyLinkedQueueTest {
 
   @Test
   void givenQueueWithoutElements_whenIterating_thenShouldFail() {
-    final var linkedQueue = new SinglyLinkedQueue<>();
-    final var iterator = linkedQueue.iterator();
+    final var singlyQueue = new SinglyLinkedQueue<>();
+    final var iterator = singlyQueue.iterator();
     Assertions.assertThrows(NoSuchElementException.class, () -> iterator.next());
   }
 
   @Test
   void givenQueueIterator_whenRemoving_thenShouldFail() {
-    final var linkedQueue = new SinglyLinkedQueue<>();
-    final var iterator = linkedQueue.iterator();
+    final var singlyQueue = new SinglyLinkedQueue<>();
+    final var iterator = singlyQueue.iterator();
     Assertions.assertThrows(UnsupportedOperationException.class, () -> iterator.remove());
   }
 
