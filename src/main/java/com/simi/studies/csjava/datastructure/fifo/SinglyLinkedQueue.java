@@ -32,6 +32,9 @@ public class SinglyLinkedQueue<T> implements Queue<T> {
     totalElements--;
     final var item = firstItem.item;
     firstItem = firstItem.nextItem;
+    if (isEmpty()) {
+      lastItem = null;
+    }
     return Optional.of(item);
   }
 
