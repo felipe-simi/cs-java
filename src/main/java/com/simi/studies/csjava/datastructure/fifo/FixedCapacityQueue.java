@@ -9,6 +9,8 @@ public class FixedCapacityQueue<T> implements Queue<T> {
 
   private T[] elements;
   private int totalElements;
+  private int head;
+  private int tail;
 
   public FixedCapacityQueue(int maxCapacity) {
     if (maxCapacity < 1) {
@@ -22,8 +24,24 @@ public class FixedCapacityQueue<T> implements Queue<T> {
     if (totalElements == elements.length) {
       throw new CapacityExceededException("It is not allowed to enqueue into a full queue.");
     }
-    elements[totalElements] = item;
+    refreshQueue();
+    elements[tail] = item;
+    tail++;
     totalElements++;
+  }
+
+  private void refreshQueue() {
+    if (tail < elements.length) {
+      return;
+    }
+    final var temp = (T[]) new Object[elements.length];
+    tail = 0;
+    for (int i = head; i < elements.length; i++) {
+      temp[tail] = elements[i];
+      tail++;
+    }
+    head = 0;
+    elements = temp;
   }
 
   @Override
@@ -31,13 +49,9 @@ public class FixedCapacityQueue<T> implements Queue<T> {
     if (isEmpty()) {
       return Optional.empty();
     }
-    final var item = elements[0];
-    final var temp = (T[]) new Object[elements.length];
-    for (int i = 1; i < totalElements; i++) {
-      temp[i - 1] = elements[i];
-    }
+    final var item = elements[head];
+    head++;
     totalElements--;
-    elements = temp;
     return Optional.of(item);
   }
 
