@@ -24,8 +24,19 @@ public class DynamicCapacityQueue<T> implements Queue<T> {
 
   @Override
   public void enqueue(T item) {
+    if (elements.length * loadFactor > totalElements) {
+      increaseCapacity();
+    }
     elements[totalElements] = item;
     totalElements++;
+  }
+
+  private void increaseCapacity() {
+    final var temp = (T[]) new Object[elements.length * 2];
+    for (int i = 0; i < totalElements; i++) {
+      temp[i] = elements[i];
+    }
+    elements = temp;
   }
 
   @Override
@@ -40,7 +51,7 @@ public class DynamicCapacityQueue<T> implements Queue<T> {
 
   @Override
   public int size() {
-    return 0;
+    return totalElements;
   }
 
   @Override

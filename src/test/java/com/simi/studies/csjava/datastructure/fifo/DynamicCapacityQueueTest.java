@@ -18,4 +18,12 @@ class DynamicCapacityQueueTest {
     Assertions.assertFalse(dynamicCapacity.isEmpty());
   }
 
+  @Test
+  public void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+    final var dynamicCapacity = new DynamicCapacityQueue<String>(1);
+    dynamicCapacity.enqueue("Test1");
+    dynamicCapacity.enqueue("Test2");
+    Assertions.assertEquals(2, dynamicCapacity.size());
+  }
+
 }
