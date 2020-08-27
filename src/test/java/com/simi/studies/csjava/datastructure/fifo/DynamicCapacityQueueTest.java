@@ -7,8 +7,15 @@ class DynamicCapacityQueueTest {
 
   @Test
   public void givenQueueWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
-    final var emptyQueue = new DynamicCapacityQueue<String>();
+    final var emptyQueue = new DynamicCapacityQueue<String>(10);
     Assertions.assertTrue(emptyQueue.isEmpty());
+  }
+
+  @Test
+  public void givenQueueWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+    final var dynamicCapacity = new DynamicCapacityQueue<String>(10);
+    dynamicCapacity.enqueue("Test");
+    Assertions.assertFalse(dynamicCapacity.isEmpty());
   }
 
 }
