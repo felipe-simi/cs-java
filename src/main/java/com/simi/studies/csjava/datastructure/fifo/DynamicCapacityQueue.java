@@ -41,7 +41,26 @@ public class DynamicCapacityQueue<T> implements Queue<T> {
 
   @Override
   public Optional<T> dequeue() {
-    return Optional.empty();
+    if (isEmpty()) {
+      return Optional.empty();
+    }
+    final var item = elements[0];
+    elements[0] = null;
+    decreaseCapacity();
+    totalElements--;
+    return Optional.of(item);
+  }
+
+  private void decreaseCapacity() {
+    var newSize = elements.length;
+    if (elements.length * (1 - loadFactor) > totalElements) {
+      newSize = Math.round(elements.length * 0.5f);
+    }
+    final var temp = (T[]) new Object[newSize];
+    for (int i = 1; i < totalElements; i++) {
+      temp[i - 1] = elements[i];
+    }
+    elements = temp;
   }
 
   @Override

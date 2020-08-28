@@ -26,4 +26,37 @@ class DynamicCapacityQueueTest {
     Assertions.assertEquals(2, dynamicCapacity.size());
   }
 
+  @Test
+  public void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
+    final var dynamicCapacity = new DynamicCapacityQueue<String>(2);
+    Assertions.assertTrue(dynamicCapacity.dequeue().isEmpty());
+  }
+
+  @Test
+  public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
+    final var dynamicCapacity = new DynamicCapacityQueue<String>(1);
+    dynamicCapacity.enqueue("Test1");
+    Assertions.assertEquals("Test1", dynamicCapacity.dequeue().get());
+  }
+
+  @Test
+  public void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
+    final var dynamicCapacity = new DynamicCapacityQueue<String>(2);
+    dynamicCapacity.enqueue("Test1");
+    dynamicCapacity.enqueue("Test2");
+    Assertions.assertEquals("Test1", dynamicCapacity.dequeue().get());
+    Assertions.assertEquals("Test2", dynamicCapacity.dequeue().get());
+  }
+
+  @Test
+  public void givenQueueWithMultipleElements_whenDequeueElementsInterchangeably_thenShouldBeLifo() {
+    final var dynamicCapacity = new DynamicCapacityQueue<String>(2);
+    dynamicCapacity.enqueue("Test1");
+    Assertions.assertEquals("Test1", dynamicCapacity.dequeue().get());
+    Assertions.assertEquals(0, dynamicCapacity.size());
+    dynamicCapacity.enqueue("Test2");
+    Assertions.assertEquals("Test2", dynamicCapacity.dequeue().get());
+    Assertions.assertEquals(0, dynamicCapacity.size());
+  }
+
 }
