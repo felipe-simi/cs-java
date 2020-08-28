@@ -1,6 +1,7 @@
 package com.simi.studies.csjava.datastructure.fifo;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class DynamicCapacityQueue<T> implements Queue<T> {
@@ -75,7 +76,40 @@ public class DynamicCapacityQueue<T> implements Queue<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return null;
+    return new DynamicCapacityQueueIterator(elements, totalElements);
+  }
+
+  private class DynamicCapacityQueueIterator<T> implements Iterator<T> {
+
+    private final T[] elements;
+    private final int totalElements;
+    private int position;
+
+    private DynamicCapacityQueueIterator(final T[] elements, final int totalElements) {
+      this.elements = elements;
+      this.totalElements = totalElements;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return position < totalElements;
+    }
+
+    @Override
+    public T next() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
+      }
+      final var element = elements[position];
+      position++;
+      return element;
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException("Can not remove from a Queue");
+    }
+
   }
 
 }
