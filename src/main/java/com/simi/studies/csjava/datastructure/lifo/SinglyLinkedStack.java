@@ -29,7 +29,7 @@ public class SinglyLinkedStack<T> implements Stack<T> {
     totalElements--;
     final var item = topItem.item;
     topItem = topItem.nextItem;
-    return Optional.of(item);
+    return Optional.ofNullable(item);
   }
 
   @Override

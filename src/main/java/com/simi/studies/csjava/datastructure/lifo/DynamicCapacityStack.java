@@ -60,7 +60,7 @@ public class DynamicCapacityStack<T> implements Stack<T> {
     final var poppedElement = elements[totalElements];
     elements[totalElements] = null;
     decreaseCapacity();
-    return Optional.of(poppedElement);
+    return Optional.ofNullable(poppedElement);
   }
 
   private void decreaseCapacity() {

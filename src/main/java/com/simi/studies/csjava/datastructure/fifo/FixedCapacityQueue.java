@@ -20,7 +20,7 @@ public class FixedCapacityQueue<T> implements Queue<T> {
   }
 
   @Override
-  public void enqueue(T item) {
+  public void enqueue(final T item) {
     if (totalElements == elements.length) {
       throw new CapacityExceededException("It is not allowed to enqueue into a full queue.");
     }
@@ -52,7 +52,7 @@ public class FixedCapacityQueue<T> implements Queue<T> {
     final var item = elements[head];
     head++;
     totalElements--;
-    return Optional.of(item);
+    return Optional.ofNullable(item);
   }
 
   @Override

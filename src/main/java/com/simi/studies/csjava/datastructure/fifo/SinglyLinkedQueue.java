@@ -35,7 +35,7 @@ public class SinglyLinkedQueue<T> implements Queue<T> {
     if (isEmpty()) {
       lastItem = null;
     }
-    return Optional.of(item);
+    return Optional.ofNullable(item);
   }
 
   @Override

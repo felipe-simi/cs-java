@@ -24,7 +24,7 @@ public class DynamicCapacityQueue<T> implements Queue<T> {
   }
 
   @Override
-  public void enqueue(T item) {
+  public void enqueue(final T item) {
     if (elements.length * loadFactor > totalElements) {
       increaseCapacity();
     }
@@ -49,7 +49,7 @@ public class DynamicCapacityQueue<T> implements Queue<T> {
     elements[0] = null;
     decreaseCapacity();
     totalElements--;
-    return Optional.of(item);
+    return Optional.ofNullable(item);
   }
 
   private void decreaseCapacity() {

@@ -18,7 +18,7 @@ public class FixedCapacityStack<T> implements Stack<T> {
   }
 
   @Override
-  public void push(T item) {
+  public void push(final T item) {
     if (totalElements == elements.length) {
       throw new CapacityExceededException("It is not allowed to push into a full stack.");
     }
@@ -33,7 +33,7 @@ public class FixedCapacityStack<T> implements Stack<T> {
     }
     totalElements--;
     final var poppedElement = elements[totalElements];
-    return Optional.of(poppedElement);
+    return Optional.ofNullable(poppedElement);
   }
 
   @Override
