@@ -1,5 +1,6 @@
 package com.simi.studies.csjava.union;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -44,17 +45,19 @@ class UnionQuickFindTest {
     unionQuickFind.connect(1, 0);
     unionQuickFind.connect(6, 7);
 
-    assertTrue(unionQuickFind.isConnected(1, 0));
-    assertTrue(unionQuickFind.isConnected(1, 2));
-    assertTrue(unionQuickFind.isConnected(1, 1));
-    assertTrue(unionQuickFind.isConnected(1, 5));
-    assertTrue(unionQuickFind.isConnected(1, 6));
-    assertTrue(unionQuickFind.isConnected(1, 7));
+    Assertions.assertAll("Testing union grouped in 1",
+        () -> assertTrue(unionQuickFind.isConnected(1, 0)),
+        () -> assertTrue(unionQuickFind.isConnected(1, 2)),
+        () -> assertTrue(unionQuickFind.isConnected(1, 1)),
+        () -> assertTrue(unionQuickFind.isConnected(1, 5)),
+        () -> assertTrue(unionQuickFind.isConnected(1, 6)),
+        () -> assertTrue(unionQuickFind.isConnected(1, 7)));
 
-    assertTrue(unionQuickFind.isConnected(8, 3));
-    assertTrue(unionQuickFind.isConnected(8, 4));
-    assertTrue(unionQuickFind.isConnected(8, 8));
-    assertTrue(unionQuickFind.isConnected(8, 9));
+    Assertions.assertAll("Testing union grouped in 8",
+        () -> assertTrue(unionQuickFind.isConnected(8, 3)),
+        () -> assertTrue(unionQuickFind.isConnected(8, 4)),
+        () -> assertTrue(unionQuickFind.isConnected(8, 8)),
+        () -> assertTrue(unionQuickFind.isConnected(8, 9)));
   }
 
   @Test
@@ -64,24 +67,32 @@ class UnionQuickFindTest {
     unionQuickFind.connect("house", "bed");
     unionQuickFind.connect("work", "subway");
 
-    assertTrue(unionQuickFind.isConnected("car", "house"));
-    assertTrue(unionQuickFind.isConnected("car", "bed"));
-    assertTrue(unionQuickFind.isConnected("work", "subway"));
+    Assertions.assertAll("Testing valid connections",
+        () -> assertTrue(unionQuickFind.isConnected("car", "house")),
+        () -> assertTrue(unionQuickFind.isConnected("car", "bed")),
+        () -> assertTrue(unionQuickFind.isConnected("work", "subway")));
 
-    assertFalse(unionQuickFind.isConnected("work", "bed"));
+    Assertions.assertAll("Testing invalid connections",
+        () -> assertFalse(unionQuickFind.isConnected("work", "bed")));
   }
 
   @Test
   public void givenNullNodes_whenInvalidUnion_thenIllegalArgumentException() {
     final var unionQuickFind = new UnionQuickFind<Long>();
     unionQuickFind.connect(4L, 3L);
-    assertThrows(IllegalArgumentException.class, () -> unionQuickFind.connect(null, null));
-    assertThrows(IllegalArgumentException.class, () -> unionQuickFind.connect(null, 1L));
-    assertThrows(IllegalArgumentException.class, () -> unionQuickFind.connect(1L, null));
-    assertThrows(IllegalArgumentException.class, () -> unionQuickFind.isConnected(10L, 4L));
-    assertThrows(IllegalArgumentException.class, () -> unionQuickFind.isConnected(3L, 12L));
-    assertThrows(IllegalArgumentException.class, () -> unionQuickFind.isConnected(30L, 99L));
+    Assertions.assertAll("Testing when checking a connection with null arguments",
+        () -> assertThrows(IllegalArgumentException.class,
+            () -> unionQuickFind.connect(null, null)),
+        () -> assertThrows(IllegalArgumentException.class, () -> unionQuickFind.connect(null, 1L)),
+        () -> assertThrows(IllegalArgumentException.class, () -> unionQuickFind.connect(1L, null)));
 
+    Assertions.assertAll("Testing when checking a connection non existing node",
+        () -> assertThrows(IllegalArgumentException.class,
+            () -> unionQuickFind.isConnected(10L, 4L)),
+        () -> assertThrows(IllegalArgumentException.class,
+            () -> unionQuickFind.isConnected(3L, 12L)),
+        () -> assertThrows(IllegalArgumentException.class,
+            () -> unionQuickFind.isConnected(30L, 99L)));
   }
 
 }
