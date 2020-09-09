@@ -39,8 +39,9 @@ class SinglyLinkedQueueTest {
   public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
     final var singlyQueue = new SinglyLinkedQueue<String>();
     singlyQueue.enqueue("Test1");
-    Assertions.assertEquals("Test1", singlyQueue.dequeue().get());
-    Assertions.assertEquals(0, singlyQueue.size());
+    Assertions.assertAll("Testing single dequeue",
+        () -> Assertions.assertEquals("Test1", singlyQueue.dequeue().get()),
+        () -> Assertions.assertEquals(0, singlyQueue.size()));
   }
 
   @Test
@@ -48,10 +49,12 @@ class SinglyLinkedQueueTest {
     final var singlyQueue = new SinglyLinkedQueue<String>();
     singlyQueue.enqueue("Test1");
     singlyQueue.enqueue("Test2");
-    Assertions.assertEquals("Test1", singlyQueue.dequeue().get());
-    Assertions.assertEquals(1, singlyQueue.size());
-    Assertions.assertEquals("Test2", singlyQueue.dequeue().get());
-    Assertions.assertEquals(0, singlyQueue.size());
+    Assertions.assertAll("Testing multiple dequeue",
+        () -> Assertions.assertEquals("Test1", singlyQueue.dequeue().get()),
+        () -> Assertions.assertEquals(1, singlyQueue.size()),
+        () -> Assertions.assertEquals("Test2", singlyQueue.dequeue().get()),
+        () -> Assertions.assertEquals(0, singlyQueue.size()));
+
   }
 
   @Test

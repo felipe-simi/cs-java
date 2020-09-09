@@ -38,7 +38,9 @@ class DynamicCapacityQueueTest {
   public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
     final var dynamicCapacity = new DynamicCapacityQueue<String>(1);
     dynamicCapacity.enqueue("Test1");
-    Assertions.assertEquals("Test1", dynamicCapacity.dequeue().get());
+    Assertions.assertAll("Testing single dequeue",
+        () -> Assertions.assertEquals("Test1", dynamicCapacity.dequeue().get()),
+        () -> Assertions.assertEquals(0, dynamicCapacity.size()));
   }
 
   @Test
@@ -46,8 +48,11 @@ class DynamicCapacityQueueTest {
     final var dynamicCapacity = new DynamicCapacityQueue<String>(2);
     dynamicCapacity.enqueue("Test1");
     dynamicCapacity.enqueue("Test2");
-    Assertions.assertEquals("Test1", dynamicCapacity.dequeue().get());
-    Assertions.assertEquals("Test2", dynamicCapacity.dequeue().get());
+    Assertions.assertAll("Testing multiple dequeue",
+        () -> Assertions.assertEquals("Test1", dynamicCapacity.dequeue().get()),
+        () -> Assertions.assertEquals(1, dynamicCapacity.size()),
+        () -> Assertions.assertEquals("Test2", dynamicCapacity.dequeue().get()),
+        () -> Assertions.assertEquals(0, dynamicCapacity.size()));
   }
 
   @Test

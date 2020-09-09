@@ -48,7 +48,9 @@ class FixedCapacityQueueTest {
   public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
     final var fixedCapacity = new FixedCapacityQueue<String>(1);
     fixedCapacity.enqueue("Test1");
-    Assertions.assertEquals("Test1", fixedCapacity.dequeue().get());
+    Assertions.assertAll("Testing single dequeue",
+        () -> Assertions.assertEquals("Test1", fixedCapacity.dequeue().get()),
+        () -> Assertions.assertEquals(0, fixedCapacity.size()));
   }
 
   @Test
@@ -56,8 +58,11 @@ class FixedCapacityQueueTest {
     final var fixedCapacity = new FixedCapacityQueue<String>(2);
     fixedCapacity.enqueue("Test1");
     fixedCapacity.enqueue("Test2");
-    Assertions.assertEquals("Test1", fixedCapacity.dequeue().get());
-    Assertions.assertEquals("Test2", fixedCapacity.dequeue().get());
+    Assertions.assertAll("Testing multiple dequeue",
+        () -> Assertions.assertEquals("Test1", fixedCapacity.dequeue().get()),
+        () -> Assertions.assertEquals(1, fixedCapacity.size()),
+        () -> Assertions.assertEquals("Test2", fixedCapacity.dequeue().get()),
+        () -> Assertions.assertEquals(0, fixedCapacity.size()));
   }
 
   @Test
