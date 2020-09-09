@@ -53,7 +53,9 @@ class FixedCapacityStackTest {
   public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
     final var fixedCapacity = new FixedCapacityStack<String>(1);
     fixedCapacity.push("Test1");
-    Assertions.assertEquals("Test1", fixedCapacity.pop().get());
+    Assertions.assertAll("Testing single pop",
+        () -> Assertions.assertEquals("Test1", fixedCapacity.pop().get()),
+        () -> Assertions.assertTrue(fixedCapacity.isEmpty()));
   }
 
   @Test
@@ -61,8 +63,11 @@ class FixedCapacityStackTest {
     final var fixedCapacity = new FixedCapacityStack<String>(2);
     fixedCapacity.push("Test1");
     fixedCapacity.push("Test2");
-    Assertions.assertEquals("Test2", fixedCapacity.pop().get());
-    Assertions.assertEquals("Test1", fixedCapacity.pop().get());
+    Assertions.assertAll("Testing multiple pop",
+        () -> Assertions.assertEquals("Test2", fixedCapacity.pop().get()),
+        () -> Assertions.assertEquals(1, fixedCapacity.size()),
+        () -> Assertions.assertEquals("Test1", fixedCapacity.pop().get()),
+        () -> Assertions.assertTrue(fixedCapacity.isEmpty()));
   }
 
   @Test

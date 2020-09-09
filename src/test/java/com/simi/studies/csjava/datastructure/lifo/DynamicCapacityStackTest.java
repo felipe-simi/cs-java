@@ -62,7 +62,9 @@ class DynamicCapacityStackTest {
   public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
     final var dynamicCapacity = new DynamicCapacityStack<String>(1, 0.2f);
     dynamicCapacity.push("Test1");
-    Assertions.assertEquals("Test1", dynamicCapacity.pop().get());
+    Assertions.assertAll("Testing single pop",
+        () -> Assertions.assertEquals("Test1", dynamicCapacity.pop().get()),
+        () -> Assertions.assertTrue(dynamicCapacity.isEmpty()));
   }
 
   @Test
@@ -70,9 +72,11 @@ class DynamicCapacityStackTest {
     final var dynamicCapacity = new DynamicCapacityStack<String>(2);
     dynamicCapacity.push("Test1");
     dynamicCapacity.push("Test2");
-    Assertions.assertEquals("Test2", dynamicCapacity.pop().get());
-    Assertions.assertEquals("Test1", dynamicCapacity.pop().get());
-    Assertions.assertTrue(dynamicCapacity.isEmpty());
+    Assertions.assertAll("Testing multiple pop",
+        () -> Assertions.assertEquals("Test2", dynamicCapacity.pop().get()),
+        () -> Assertions.assertEquals(1, dynamicCapacity.size()),
+        () -> Assertions.assertEquals("Test1", dynamicCapacity.pop().get()),
+        () -> Assertions.assertTrue(dynamicCapacity.isEmpty()));
   }
 
   @Test

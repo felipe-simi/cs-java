@@ -39,8 +39,9 @@ class SinglyLinkedStackTest {
   public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
     final var singlyStack = new SinglyLinkedStack<String>();
     singlyStack.push("Test1");
-    Assertions.assertEquals("Test1", singlyStack.pop().get());
-    Assertions.assertEquals(0, singlyStack.size());
+    Assertions.assertAll("Testing single pop",
+        () -> Assertions.assertEquals("Test1", singlyStack.pop().get()),
+        () -> Assertions.assertTrue(singlyStack.isEmpty()));
   }
 
   @Test
@@ -48,10 +49,11 @@ class SinglyLinkedStackTest {
     final var singlyStack = new SinglyLinkedStack<String>();
     singlyStack.push("Test1");
     singlyStack.push("Test2");
-    Assertions.assertEquals("Test2", singlyStack.pop().get());
-    Assertions.assertEquals(1, singlyStack.size());
-    Assertions.assertEquals("Test1", singlyStack.pop().get());
-    Assertions.assertEquals(0, singlyStack.size());
+    Assertions.assertAll("Testing multiple pop",
+        () -> Assertions.assertEquals("Test2", singlyStack.pop().get()),
+        () -> Assertions.assertEquals(1, singlyStack.size()),
+        () -> Assertions.assertEquals("Test1", singlyStack.pop().get()),
+        () -> Assertions.assertTrue(singlyStack.isEmpty()));
   }
 
   @Test
