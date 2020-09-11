@@ -8,20 +8,20 @@ import java.util.NoSuchElementException;
 class DynamicCapacityQueueTest {
 
   @Test
-  public void givenQueueWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
+  void givenQueueWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
     final var emptyQueue = new DynamicCapacityQueue<String>(10);
     Assertions.assertTrue(emptyQueue.isEmpty());
   }
 
   @Test
-  public void givenQueueWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+  void givenQueueWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
     final var dynamicCapacity = new DynamicCapacityQueue<String>(10);
     dynamicCapacity.enqueue("Test");
     Assertions.assertFalse(dynamicCapacity.isEmpty());
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+  void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
     final var dynamicCapacity = new DynamicCapacityQueue<String>(1);
     dynamicCapacity.enqueue("Test1");
     dynamicCapacity.enqueue("Test2");
@@ -29,13 +29,13 @@ class DynamicCapacityQueueTest {
   }
 
   @Test
-  public void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
+  void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
     final var dynamicCapacity = new DynamicCapacityQueue<String>(2);
     Assertions.assertTrue(dynamicCapacity.dequeue().isEmpty());
   }
 
   @Test
-  public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
+  void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
     final var dynamicCapacity = new DynamicCapacityQueue<String>(1);
     dynamicCapacity.enqueue("Test1");
     Assertions.assertAll("Testing single dequeue",
@@ -44,7 +44,7 @@ class DynamicCapacityQueueTest {
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
+  void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
     final var dynamicCapacity = new DynamicCapacityQueue<String>(2);
     dynamicCapacity.enqueue("Test1");
     dynamicCapacity.enqueue("Test2");
@@ -56,7 +56,7 @@ class DynamicCapacityQueueTest {
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenDequeueElementsInterchangeably_thenShouldBeLifo() {
+  void givenQueueWithMultipleElements_whenDequeueElementsInterchangeably_thenShouldBeLifo() {
     final var dynamicCapacity = new DynamicCapacityQueue<String>(2);
     dynamicCapacity.enqueue("Test1");
     Assertions.assertEquals("Test1", dynamicCapacity.dequeue().get());
@@ -68,7 +68,7 @@ class DynamicCapacityQueueTest {
 
 
   @Test
-  public void givenQueueWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+  void givenQueueWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
     final var firstItem = "Test1";
     final var lastItem = "Test2";
     final var fixedCapacity = new DynamicCapacityQueue<String>(2);

@@ -9,20 +9,20 @@ import java.util.NoSuchElementException;
 class FixedCapacityQueueTest {
 
   @Test
-  public void givenQueueWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
+  void givenQueueWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
     final var emptyQueue = new FixedCapacityQueue<String>(10);
     Assertions.assertTrue(emptyQueue.isEmpty());
   }
 
   @Test
-  public void givenQueueWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+  void givenQueueWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
     final var fixedCapacity = new FixedCapacityQueue<String>(1);
     fixedCapacity.enqueue("Test");
     Assertions.assertFalse(fixedCapacity.isEmpty());
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+  void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
     final var fixedCapacity = new FixedCapacityQueue<String>(2);
     fixedCapacity.enqueue("Test1");
     Assertions.assertEquals(1, fixedCapacity.size());
@@ -31,7 +31,7 @@ class FixedCapacityQueueTest {
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenExceedingCapacity_thenThrowException() {
+  void givenQueueWithMultipleElements_whenExceedingCapacity_thenThrowException() {
     final var fixedCapacity = new FixedCapacityQueue<String>(2);
     fixedCapacity.enqueue("Test1");
     fixedCapacity.enqueue("Test2");
@@ -39,13 +39,13 @@ class FixedCapacityQueueTest {
   }
 
   @Test
-  public void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
+  void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
     final var fixedCapacity = new FixedCapacityQueue<String>(2);
     Assertions.assertTrue(fixedCapacity.dequeue().isEmpty());
   }
 
   @Test
-  public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
+  void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
     final var fixedCapacity = new FixedCapacityQueue<String>(1);
     fixedCapacity.enqueue("Test1");
     Assertions.assertAll("Testing single dequeue",
@@ -54,7 +54,7 @@ class FixedCapacityQueueTest {
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
+  void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
     final var fixedCapacity = new FixedCapacityQueue<String>(2);
     fixedCapacity.enqueue("Test1");
     fixedCapacity.enqueue("Test2");
@@ -66,7 +66,7 @@ class FixedCapacityQueueTest {
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenDequeueElementsInterchangeably_thenShouldBeLifo() {
+  void givenQueueWithMultipleElements_whenDequeueElementsInterchangeably_thenShouldBeLifo() {
     final var fixedCapacity = new FixedCapacityQueue<String>(2);
     fixedCapacity.enqueue("Test1");
     Assertions.assertEquals("Test1", fixedCapacity.dequeue().get());
@@ -77,7 +77,7 @@ class FixedCapacityQueueTest {
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+  void givenQueueWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
     final var firstItem = "Test1";
     final var lastItem = "Test2";
     final var fixedCapacity = new FixedCapacityQueue<String>(2);

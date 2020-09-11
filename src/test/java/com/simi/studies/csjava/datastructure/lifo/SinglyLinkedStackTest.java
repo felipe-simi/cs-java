@@ -8,20 +8,20 @@ import java.util.NoSuchElementException;
 class SinglyLinkedStackTest {
 
   @Test
-  public void givenStackWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
+  void givenStackWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
     final var emptyStack = new SinglyLinkedStack<String>();
     Assertions.assertTrue(emptyStack.isEmpty());
   }
 
   @Test
-  public void givenStackWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+  void givenStackWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
     final var singlyStack = new SinglyLinkedStack<String>();
     singlyStack.push("Test");
     Assertions.assertFalse(singlyStack.isEmpty());
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+  void givenStackWithMultipleElements_whenCheckingSize_thenShouldTwo() {
     final var singlyStack = new SinglyLinkedStack<String>();
     singlyStack.push("Test1");
     Assertions.assertEquals(1, singlyStack.size());
@@ -30,13 +30,13 @@ class SinglyLinkedStackTest {
   }
 
   @Test
-  public void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
+  void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
     final var singlyStack = new SinglyLinkedStack<String>();
     Assertions.assertTrue(singlyStack.pop().isEmpty());
   }
 
   @Test
-  public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
+  void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
     final var singlyStack = new SinglyLinkedStack<String>();
     singlyStack.push("Test1");
     Assertions.assertAll("Testing single pop",
@@ -45,7 +45,7 @@ class SinglyLinkedStackTest {
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
+  void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
     final var singlyStack = new SinglyLinkedStack<String>();
     singlyStack.push("Test1");
     singlyStack.push("Test2");
@@ -57,7 +57,7 @@ class SinglyLinkedStackTest {
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+  void givenStackWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
     final var firstItem = "Test1";
     final var lastItem = "Test2";
     final var singlyStack = new SinglyLinkedStack<String>();

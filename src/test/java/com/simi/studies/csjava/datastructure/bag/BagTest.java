@@ -7,20 +7,20 @@ import java.util.List;
 class BagTest {
 
   @Test
-  public void givenBagWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
+  void givenBagWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
     final var emptyBag = new Bag();
     Assertions.assertTrue(emptyBag.isEmpty());
   }
 
   @Test
-  public void givenBagWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+  void givenBagWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
     final var bag = new Bag<String>();
     bag.add("Test");
     Assertions.assertFalse(bag.isEmpty());
   }
 
   @Test
-  public void givenBagWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+  void givenBagWithMultipleElements_whenCheckingSize_thenShouldTwo() {
     final var bag = new Bag<String>();
     bag.add("Test1");
     bag.add("Test2");
@@ -28,7 +28,7 @@ class BagTest {
   }
 
   @Test
-  public void givenBagWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+  void givenBagWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
     final var firstItem = "Test1";
     final var lastItem = "Test2";
     final var bag = new Bag<String>();

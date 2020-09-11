@@ -8,44 +8,44 @@ import java.util.NoSuchElementException;
 class DynamicCapacityStackTest {
 
   @Test
-  public void givenInvalidCapacity_whenCreatingStack_thenThrowException() {
+  void givenInvalidCapacity_whenCreatingStack_thenThrowException() {
     Assertions.assertThrows(IllegalArgumentException.class,
         () -> new DynamicCapacityStack<String>(0));
   }
 
   @Test
-  public void givenLoadFactorGreaterThanOne_whenCreatingStack_thenThrowException() {
+  void givenLoadFactorGreaterThanOne_whenCreatingStack_thenThrowException() {
     Assertions.assertThrows(IllegalArgumentException.class,
         () -> new DynamicCapacityStack<String>(2f));
   }
 
   @Test
-  public void givenNegativeLoadFactor_whenCreatingStack_thenThrowException() {
+  void givenNegativeLoadFactor_whenCreatingStack_thenThrowException() {
     Assertions.assertThrows(IllegalArgumentException.class,
         () -> new DynamicCapacityStack<String>(-2.0f));
   }
 
   @Test
-  public void givenInvalidInitialization_whenCreatingStack_thenThrowException() {
+  void givenInvalidInitialization_whenCreatingStack_thenThrowException() {
     Assertions.assertThrows(IllegalArgumentException.class,
         () -> new DynamicCapacityStack<String>(0, -2.0f));
   }
 
   @Test
-  public void givenStackWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
+  void givenStackWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
     final var emptyStack = new DynamicCapacityStack<String>(1);
     Assertions.assertTrue(emptyStack.isEmpty());
   }
 
   @Test
-  public void givenStackWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+  void givenStackWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
     final var dynamicCapacity = new DynamicCapacityStack<String>(1);
     dynamicCapacity.push("Test");
     Assertions.assertFalse(dynamicCapacity.isEmpty());
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenCheckingSize_thenResize() {
+  void givenStackWithMultipleElements_whenCheckingSize_thenResize() {
     final var dynamicCapacity = new DynamicCapacityStack<String>(1);
     dynamicCapacity.push("Test1");
     dynamicCapacity.push("Test2");
@@ -53,13 +53,13 @@ class DynamicCapacityStackTest {
   }
 
   @Test
-  public void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
+  void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
     final var dynamicCapacity = new DynamicCapacityStack<String>(10);
     Assertions.assertTrue(dynamicCapacity.pop().isEmpty());
   }
 
   @Test
-  public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
+  void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
     final var dynamicCapacity = new DynamicCapacityStack<String>(1, 0.2f);
     dynamicCapacity.push("Test1");
     Assertions.assertAll("Testing single pop",
@@ -68,7 +68,7 @@ class DynamicCapacityStackTest {
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
+  void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
     final var dynamicCapacity = new DynamicCapacityStack<String>(2);
     dynamicCapacity.push("Test1");
     dynamicCapacity.push("Test2");
@@ -80,7 +80,7 @@ class DynamicCapacityStackTest {
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+  void givenStackWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
     final var firstItem = "Test1";
     final var lastItem = "Test2";
     final var dynamicCapacity = new DynamicCapacityStack<String>(2);

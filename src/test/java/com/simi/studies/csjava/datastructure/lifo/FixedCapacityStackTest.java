@@ -9,26 +9,26 @@ import java.util.NoSuchElementException;
 class FixedCapacityStackTest {
 
   @Test
-  public void givenInvalidCapacity_whenCreatingStack_thenThrowException() {
+  void givenInvalidCapacity_whenCreatingStack_thenThrowException() {
     Assertions.assertThrows(IllegalArgumentException.class,
         () -> new FixedCapacityStack<String>(0));
   }
 
   @Test
-  public void givenStackWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
+  void givenStackWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
     final var emptyStack = new FixedCapacityStack<String>(10);
     Assertions.assertTrue(emptyStack.isEmpty());
   }
 
   @Test
-  public void givenStackWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+  void givenStackWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
     final var fixedCapacity = new FixedCapacityStack<String>(1);
     fixedCapacity.push("Test");
     Assertions.assertFalse(fixedCapacity.isEmpty());
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+  void givenStackWithMultipleElements_whenCheckingSize_thenShouldTwo() {
     final var fixedCapacity = new FixedCapacityStack<String>(2);
     fixedCapacity.push("Test1");
     fixedCapacity.push("Test2");
@@ -36,7 +36,7 @@ class FixedCapacityStackTest {
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenExceedingCapacity_thenThrowException() {
+  void givenStackWithMultipleElements_whenExceedingCapacity_thenThrowException() {
     final var fixedCapacity = new FixedCapacityStack<String>(2);
     fixedCapacity.push("Test1");
     fixedCapacity.push("Test2");
@@ -44,13 +44,13 @@ class FixedCapacityStackTest {
   }
 
   @Test
-  public void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
+  void givenStackWithoutElements_whenPopElement_thenShouldBeEmpty() {
     final var fixedCapacity = new FixedCapacityStack<String>(2);
     Assertions.assertTrue(fixedCapacity.pop().isEmpty());
   }
 
   @Test
-  public void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
+  void givenStackWithOneElement_whenPopElement_thenShouldBeEqual() {
     final var fixedCapacity = new FixedCapacityStack<String>(1);
     fixedCapacity.push("Test1");
     Assertions.assertAll("Testing single pop",
@@ -59,7 +59,7 @@ class FixedCapacityStackTest {
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
+  void givenStackWithMultipleElements_whenPopElements_thenShouldBeLifo() {
     final var fixedCapacity = new FixedCapacityStack<String>(2);
     fixedCapacity.push("Test1");
     fixedCapacity.push("Test2");
@@ -71,7 +71,7 @@ class FixedCapacityStackTest {
   }
 
   @Test
-  public void givenStackWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+  void givenStackWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
     final var firstItem = "Test1";
     final var lastItem = "Test2";
     final var fixedCapacity = new FixedCapacityStack<String>(2);

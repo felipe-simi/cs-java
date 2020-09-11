@@ -8,20 +8,20 @@ import java.util.NoSuchElementException;
 class SinglyLinkedQueueTest {
 
   @Test
-  public void givenQueueWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
+  void givenQueueWithoutElements_whenCheckingEmptiness_thenShouldBeTrue() {
     final var emptyQueue = new SinglyLinkedQueue<String>();
     Assertions.assertTrue(emptyQueue.isEmpty());
   }
 
   @Test
-  public void givenQueueWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
+  void givenQueueWithOneElement_whenCheckingEmptiness_thenShouldBeFalse() {
     final var singlyQueue = new SinglyLinkedQueue<String>();
     singlyQueue.enqueue("Test");
     Assertions.assertFalse(singlyQueue.isEmpty());
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
+  void givenQueueWithMultipleElements_whenCheckingSize_thenShouldTwo() {
     final var singlyQueue = new SinglyLinkedQueue<String>();
     singlyQueue.enqueue("Test1");
     Assertions.assertEquals(1, singlyQueue.size());
@@ -30,13 +30,13 @@ class SinglyLinkedQueueTest {
   }
 
   @Test
-  public void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
+  void givenQueueWithoutElements_whenDequeueElement_thenShouldBeEmpty() {
     final var singlyQueue = new SinglyLinkedQueue<String>();
     Assertions.assertTrue(singlyQueue.dequeue().isEmpty());
   }
 
   @Test
-  public void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
+  void givenQueueWithOneElement_whenDequeueElement_thenShouldBeEqual() {
     final var singlyQueue = new SinglyLinkedQueue<String>();
     singlyQueue.enqueue("Test1");
     Assertions.assertAll("Testing single dequeue",
@@ -45,7 +45,7 @@ class SinglyLinkedQueueTest {
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
+  void givenQueueWithMultipleElements_whenDequeueElements_thenShouldBeLifo() {
     final var singlyQueue = new SinglyLinkedQueue<String>();
     singlyQueue.enqueue("Test1");
     singlyQueue.enqueue("Test2");
@@ -58,7 +58,7 @@ class SinglyLinkedQueueTest {
   }
 
   @Test
-  public void givenQueueWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
+  void givenQueueWithMultipleElements_whenCheckingIterable_thenShouldTrue() {
     final var firstItem = "Test1";
     final var lastItem = "Test2";
     final var singlyQueue = new SinglyLinkedQueue<String>();
