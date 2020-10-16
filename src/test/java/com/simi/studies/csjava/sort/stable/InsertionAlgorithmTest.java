@@ -28,4 +28,10 @@ class InsertionAlgorithmTest {
         () -> Assertions.assertNotEquals(emptyArray, sortedArray));
   }
 
+  @Test
+  void givenNullComparator_whenSortingElements_thenIllegalArgumentException() {
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> insertionSort.sort(new Integer[0], null));
+  }
+
 }
