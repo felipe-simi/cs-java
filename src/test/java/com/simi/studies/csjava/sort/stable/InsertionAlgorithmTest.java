@@ -4,6 +4,7 @@ import com.simi.studies.csjava.sort.SortingAlgorithm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.Comparator;
 
 class InsertionAlgorithmTest {
 
@@ -32,6 +33,12 @@ class InsertionAlgorithmTest {
   void givenNullComparator_whenSortingElements_thenIllegalArgumentException() {
     Assertions.assertThrows(IllegalArgumentException.class,
         () -> insertionSort.sort(new Integer[0], null));
+  }
+
+  @Test
+  void givenNullArray_whenSortingElements_thenIllegalArgumentException() {
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> insertionSort.sort(null, Comparator.naturalOrder()));
   }
 
 }

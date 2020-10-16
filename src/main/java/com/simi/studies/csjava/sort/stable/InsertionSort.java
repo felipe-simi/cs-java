@@ -13,10 +13,17 @@ public final class InsertionSort<T extends Comparable> implements SortingAlgorit
 
   @Override
   public T[] sort(final T[] elements, final Comparator comparator) {
+    validateInput(elements, comparator);
+    return Arrays.copyOf(elements, elements.length);
+  }
+
+  private void validateInput(final T[] elements, final Comparator comparator) {
     if (comparator == null) {
       throw new IllegalArgumentException("Cannot sort an array using a null comparator.");
     }
-    return Arrays.copyOf(elements, elements.length);
+    if (elements == null) {
+      throw new IllegalArgumentException("Cannot sort a null array.");
+    }
   }
 
 }
