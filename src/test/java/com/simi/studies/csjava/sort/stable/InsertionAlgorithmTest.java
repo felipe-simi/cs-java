@@ -2,14 +2,22 @@ package com.simi.studies.csjava.sort.stable;
 
 import com.simi.studies.csjava.sort.SortingAlgorithm;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class InsertionAlgorithmTest {
 
   private SortingAlgorithm<Integer> insertionSort = new InsertionSort();
-  private Integer[] unsorted = {3, 4, 2, 1, 2};
-  private Integer[] unsortedClone = {3, 4, 2, 1, 2};
-  private Integer[] sorted = {1, 2, 2, 3, 4};
+  private Integer[] unsorted;
+  private Integer[] unsortedClone;
+  private Integer[] sorted;
+
+  @BeforeEach
+  public void refresh() {
+    unsorted = new Integer[] {3, 4, 2, 1, 2};
+    unsortedClone = new Integer[] {3, 4, 2, 1, 2};
+    sorted = new Integer[] {1, 2, 2, 3, 4};
+  }
 
   @Test
   void givenEmptyArray_whenSortingElements_thenShouldBeEmpty() {
