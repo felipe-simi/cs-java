@@ -41,4 +41,11 @@ class InsertionAlgorithmTest {
         () -> insertionSort.sort(null, Comparator.naturalOrder()));
   }
 
+  @Test
+  public void givenUnsortedArray_whenSortingElements_thenShouldBeImmutableSorted() {
+    final var sortedArray = insertionSort.sort(unsorted);
+    Assertions.assertArrayEquals(sorted, sortedArray);
+    Assertions.assertArrayEquals(unsorted, unsortedClone);
+  }
+
 }

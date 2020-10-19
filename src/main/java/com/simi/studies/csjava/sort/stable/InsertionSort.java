@@ -14,7 +14,14 @@ public final class InsertionSort<T extends Comparable> implements SortingAlgorit
   @Override
   public T[] sort(final T[] elements, final Comparator comparator) {
     validateInput(elements, comparator);
-    return Arrays.copyOf(elements, elements.length);
+    final var elementsSize = elements.length;
+    final var sortingArray = Arrays.copyOf(elements, elements.length);
+    for (int i = 1; i < elementsSize; i++) {
+      for (int j = i; (j > 0 && isSmallerThan(sortingArray[j], sortingArray[j - 1], comparator)); j--) {
+        swapElements(sortingArray, j, j - 1);
+      }
+    }
+    return sortingArray;
   }
 
   private void validateInput(final T[] elements, final Comparator comparator) {
