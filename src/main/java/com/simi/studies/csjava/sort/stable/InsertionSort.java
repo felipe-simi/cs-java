@@ -17,11 +17,15 @@ public final class InsertionSort<T extends Comparable> implements SortingAlgorit
     final var elementsSize = elements.length;
     final var sortingArray = Arrays.copyOf(elements, elements.length);
     for (int i = 1; i < elementsSize; i++) {
-      for (int j = i; (j > 0 && isSmallerThan(sortingArray[j], sortingArray[j - 1], comparator)); j--) {
+      for (int j = i; hasToSwap(sortingArray, comparator, j); j--) {
         swapElements(sortingArray, j, j - 1);
       }
     }
     return sortingArray;
+  }
+
+  private boolean hasToSwap(final T[] sortingArray, final Comparator comparator, int j) {
+    return (j > 0 && isSmallerThan(sortingArray[j], sortingArray[j - 1], comparator));
   }
 
   private void validateInput(final T[] elements, final Comparator comparator) {
